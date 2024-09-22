@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface JpaTodoRepository extends TodoRepository, JpaRepository<Todo, Long> {
@@ -14,7 +15,7 @@ public interface JpaTodoRepository extends TodoRepository, JpaRepository<Todo, L
     List<Todo> findAll();
 
     @Override
-    Todo findById(Long id);
+    Optional<Todo> findById(Long id);
 
     @Override
     Todo save(Todo todo);

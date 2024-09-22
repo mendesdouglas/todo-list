@@ -51,6 +51,4 @@ public class Todo {
         this.dueDate = dueDate;
     }
 
-    public Optional<Todo> orElseThrow(Object todoNotFound) {
-    }
 }

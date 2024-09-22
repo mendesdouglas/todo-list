@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -16,6 +17,7 @@ public class TodoServiceImpl implements TodoService {
     private final CreateTodo createTodo;
     private final UpdateTodo updateTodo;
 
+    @Autowired
     public TodoServiceImpl(TodoRepository todoRepository){
         this.todoRepository = todoRepository;
         this.createTodo = new CreateTodo(todoRepository);
@@ -29,7 +31,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public Todo getTodoById(Long id) {
-        return todoRepository.findById(id);
+        Optional<Todo> todo = todoRepository.findById(id);
+        return todo.orElse(null); // ou você pode lançar uma exceção customizada se o Todo não for encontrado
     }
 
     @Override
